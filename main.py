@@ -3,6 +3,7 @@ import csv
 
 app = Flask(__name__)
 
+#will add sha256
 
 @app.route('/',  methods=['GET', 'POST'])
 def index():
