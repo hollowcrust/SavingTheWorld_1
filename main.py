@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
+from hashlib import sha256 #no salt yet
 import csv
 
 app = Flask(__name__)
 
-#will add sha256
 
 @app.route('/',  methods=['GET', 'POST'])
 def index():
@@ -11,17 +11,21 @@ def index():
 	file_content = []
 	if request.method == 'POST':
 		username = request.form['username']
-		password = request.form['password']
+
+		password = str(
+    		sha256(
+                str(request.form["password"].strip()).encode("utf-8")
+            ).hexdigest()
+        )
+		
 		fullname = None
 		Class = None
 		
-		if(username == 'Discere Servire' and password == 'Non Mihi Solum'):
+		if(username == 'Discere Servire' and password == '8358544a4658c414836b7f90f56305883fb921fd92ab452f8609a61afe4bd641'):
 			data = 'GoToASR'
-		elif(username == 'Non Mihi Solum' and password == 'Discere Servire'):
-			data = 'NotGoToASR'
-		elif(username == 'placeholder for SQL injection'):
-			data = 'SQLINJ'
-		elif(username == 'Easter' and password == 'Egg'):
+		elif(username == 'Non Mihi Solum' and password == '1d8391adfed7fb30460ab2aa63c6391a6c7f6a6d2dc4e5ec899bcbd965729909'):
+			data = 'GoToAnotherASR'
+		elif(username == 'Easter' and password == '37c50c935cd2a9ad065faec4824b7484acfd2b235c52368ccdb05d1f50240af0'):
 			data = 'Easter'
 		else:
 			with open('data.csv', 'r') as file:
@@ -35,6 +39,10 @@ def index():
 						Class = row[3]
 						file.close()
 						return render_template('index.html', data='Normal', username=username, fullname=fullname, Class=Class)
+
+					elif(username == row[0] and password != row[1]):
+						file.close()
+						return render_template('index.html', data='WrongPass')
 			file.close()
 			data = 'NotFound'
 			
@@ -50,14 +58,18 @@ def registration():
 	file_content = []
 	if request.method == 'POST':
 		username = request.form['username']
-		password = request.form['password']
+		password = str(
+    		sha256(
+                str(request.form["password"].strip()).encode("utf-8")
+            ).hexdigest()
+        )
 		fullname = request.form['fullname']
 		Class = request.form['class']
 		with open('data.csv', 'r') as file:
 			raw = csv.reader(file)
 			for row in raw:
 				file_content.append(row)
-			print(file_content)
+
 			for row in file_content:
 				if(username == row[0]):
 					file.close()
