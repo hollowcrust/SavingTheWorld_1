@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration</title>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="ASRJC Logo">
+    <h1 class="headtext">Registration</h1>
+	<nav class="navbar">
+      <ul>
+        <li><a href="{{ url_for('index')}}">Log in</a></li>
+        <li><a href="{{ url_for('registration') }}">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+  </header>
+  <main>
+    <form method="post">
+      <label for="username">Username</label>
+      <input type="username" id="username" name="username" placeholder="Enter your username">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password">
+
+	  <label for="fullname">Full name</label>
+      <input type="fullname" id="fullname" name="fullname" placeholder="Enter your full name">
+
+	  <label for="class">Class</label>
+      <input type="class" id="class" name="class" placeholder="Enter your class">
+
+      <input type="submit" value="Register"/>
+    </form>
+  </main>
+
+  {% if error == 'UsernameTaken' %}
+  <div class="userdata">
+    <p>Username already taken</p>
+  </div>
+
+  {% elif error == 'AccountMade' %}
+  <div class="userdata">
+    <p>User already has an account</p>
+  </div>
+  {% endif %}
+</body>
+</html>

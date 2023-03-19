@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+</head>
+	
+<body>
+  <header>
+    <div class="logo-container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="ASRJC Logo">
+    <h1 class="headtext">ASR Smart Login</h1>
+	<nav class="navbar">
+      <ul>
+        <li><a href="{{ url_for('index') }}">Log in</a></li>
+        <li><a href="{{ url_for('registration') }}">Register</a></li>
+      </ul>
+    </nav>
+  </div>
+  </header>
+  <main>
+    <form method="post">
+      <label for="username">Username</label>
+      <input type="username" id="username" name="username" placeholder="Enter your username">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password">
+
+      <input type="submit" value="Login"/>
+    </form>
+  </main>
+  {% if data == 'GoToASR' %}
+  <script>
+    window.location.replace("https://portal.asrjc.edu.sg/");
+  </script>
+
+  {% elif data == 'GoToAnotherASR' %}
+  <script>
+    window.location.replace("https://asrjc.moe.edu.sg/");
+  </script>
+
+  {% elif data == 'Easter' %}
+  <script>
+    window.location.replace("https://en.wikipedia.org/wiki/Easter");
+  </script>
+
+  {% elif data == 'SQLINJ' %}
+  <div class="userdata">
+    <p>Nice try with that SQL Injection</p>
+  </div>
+
+  {% elif data == 'Normal' %}
+  <div class="userdata">
+  	<p>Username: {{username}}</p>
+  	<p>Full name: {{fullname}}</p>
+  	<p>Class: {{Class}}</p>
+  </div>
+
+  {% elif data == 'NotFound' %}
+  <div class="userdata">
+    <p>Account not found</p>
+  </div>
+  {% endif %}
+</body>
+</html>
