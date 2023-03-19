@@ -46,11 +46,6 @@
     window.location.replace("https://en.wikipedia.org/wiki/Easter");
   </script>
 
-  {% elif data == 'SQLINJ' %}
-  <div class="userdata">
-    <p>Nice try with that SQL Injection</p>
-  </div>
-
   {% elif data == 'Normal' %}
   <div class="userdata">
   	<p>Username: {{username}}</p>
@@ -61,6 +56,11 @@
   {% elif data == 'NotFound' %}
   <div class="userdata">
     <p>Account not found</p>
+  </div>
+
+  {% elif data == 'WrongPass' %}
+  <div class="userdata">
+    <p>Incorrect Password</p>
   </div>
   {% endif %}
 </body>
