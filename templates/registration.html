@@ -13,7 +13,7 @@
     <img src="{{ url_for('static', filename='logo.png') }}" alt="ASRJC Logo">
     <h1 class="headtext">Registration</h1>
 	<nav class="navbar">
-      <ul>
+      <ul class="link">
         <li><a href="{{ url_for('index')}}">Log in</a></li>
         <li><a href="{{ url_for('registration') }}">Register</a></li>
       </ul>
@@ -46,6 +46,11 @@
   {% elif error == 'AccountMade' %}
   <div class="userdata">
     <p>User already has an account</p>
+  </div>
+
+  {% else %} 
+  <div class="userdata">
+    <p>Success</p>
   </div>
   {% endif %}
 </body>
