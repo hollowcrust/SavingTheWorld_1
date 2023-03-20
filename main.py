@@ -27,6 +27,8 @@ def index():
 			data = 'GoToAnotherASR'
 		elif(username == 'Easter' and password == '37c50c935cd2a9ad065faec4824b7484acfd2b235c52368ccdb05d1f50240af0'):
 			data = 'Easter'
+		elif(username == 'Rick' and password == '87a000c6f6744b9dba814e868d53b67571d4821c8750378f7a41cc62fc481e64'):
+			data = 'Rick'
 		else:
 			with open('data.csv', 'r') as file:
 				raw = csv.reader(file)
