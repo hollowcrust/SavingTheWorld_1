@@ -13,7 +13,7 @@
     <img src="{{ url_for('static', filename='logo.png') }}" alt="ASRJC Logo">
     <h1 class="headtext">ASR Smart Login</h1>
 	<nav class="navbar">
-      <ul>
+      <ul class="link">
         <li><a href="{{ url_for('index') }}">Log in</a></li>
         <li><a href="{{ url_for('registration') }}">Register</a></li>
       </ul>
@@ -44,6 +44,11 @@
   {% elif data == 'Easter' %}
   <script>
     window.location.replace("https://en.wikipedia.org/wiki/Easter");
+  </script>
+
+  {% elif data == 'Rick' %}
+  <script>
+	  window.location.replace("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
   </script>
 
   {% elif data == 'Normal' %}
